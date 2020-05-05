@@ -1,0 +1,136 @@
+swagger: "2.0"
+info:
+  description: "This is a sample Online Movie Ticket Booking server."
+  version: "1.0.0"
+  title: "Swagger Online Movie Ticket Booking"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "movieticketbooking.swagger.io"
+basePath: "/v2"
+tags:
+- name: "Booking"
+  description: "Booking sevice"
+schemes:
+- "https"
+- "http"
+paths:
+  /showdetails/showId:
+    get:
+      tags:
+      - "Booking"
+      summary: "Fetches details of a specific Show"
+      description: ""
+      operationId: "Searching"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "Searching a specific Show"
+          
+  /addShow:
+    post:
+      tags:
+      - "Booking"
+      summary: "Adding Show"
+      description: "This can only be done by the admin."
+      operationId: "Add Show"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Admin can only do this"
+        required: true
+        schema:
+          $ref: "#/definitions/Show"
+      responses:
+        default:
+          description: "Show added succesffully." 
+          
+  /show/showId :
+    delete:
+      summary: Delete a Show
+      description: Show deletion
+      responses:
+        200:
+          description: OK
+    
+          
+  /show/showID:
+    put:
+      summary: Updates the Show
+      description: Show details updation
+      responses:
+        200:
+          description: OK
+      operationId: "Updates Show"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update Show object"
+        required: true
+        schema:
+          $ref: "#/definitions/Show"
+  /booking :
+    patch:
+      summary: Book the tickets
+      description: Ticket booking
+      responses:
+        200:
+          description: OK
+      operationId: " Ticket Booking "
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update Booking object"
+        required: true
+        schema:
+          $ref: "#/definitions/Booking"
+    
+  
+definitions:
+  Show:
+    type: "object"
+    properties:
+      ShowId:
+        type: "integer"
+      showTime :
+        type: "string"
+      availableSeats:
+        type: "integer"
+      unitPrice:
+        type: "integer"
+      showDate :
+        type: "integer"
+    xml:
+      name: "Show"
+      
+  Booking:
+    type: "object"
+    properties:
+      BookingId:
+        type: "integer"
+      userName :
+        type: "string"
+      Theatrename:
+        type: "integer"
+      City:
+        type: "integer"
+      Moviename :
+        type: "integer"
+    xml:
+      name: "Booking"
+      

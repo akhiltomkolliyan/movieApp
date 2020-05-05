@@ -1,0 +1,102 @@
+swagger: "2.0"
+info:
+  description: "This is a sample Online Movie Ticket Booking server."
+  version: "1.0.0"
+  title: "Swagger Online Movie Ticket Booking"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "movieticketbooking.swagger.io"
+basePath: "/v2"
+tags:
+- name: "Theatre"
+  description: "Theatre sevice"
+schemes:
+- "https"
+- "http"
+paths:
+  /theaterdetails/theaterName:
+    get:
+      tags:
+      - "Theatre"
+      summary: "Fetches details of a specific Theatre"
+      description: ""
+      operationId: "Searching"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "Searching a specific Theatre"
+          
+  /addTheatre:
+    post:
+      tags:
+      - "Theatre"
+      summary: "Adding theatre"
+      description: "This can only be done by the admin."
+      operationId: "Add Theatre"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Admin can only do this"
+        required: true
+        schema:
+          $ref: "#/definitions/Theatre"
+      responses:
+        default:
+          description: "Theatre added succesffully." 
+          
+  /theatre/theaterID :
+    delete:
+      summary: Delete a Theatre
+      description: Theatre deletion
+      responses:
+        200:
+          description: OK
+    
+          
+  /theatre/theaterId:
+    put:
+      summary: Updates the Theatre
+      description: Theatre details updation
+      responses:
+        200:
+          description: OK
+      operationId: "Updates Theatre"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update theatre object"
+        required: true
+        schema:
+          $ref: "#/definitions/Theatre"
+  
+definitions:
+  Theatre:
+    type: "object"
+    properties:
+      theatreId:
+        type: "integer"
+      theatreName:
+        type: "string"
+      address:
+        type: "string"
+      city:
+        type: "string"
+      seatingcapacity:
+        type: "integer"
+    xml:
+      name: "Movie"
+      
+  

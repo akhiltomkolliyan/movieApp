@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  description: "This is a sample Online Movie Ticket Booking server."
+  version: "1.0.0"
+  title: "Swagger Online Movie Ticket Booking"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "movieticketbooking.swagger.io"
+basePath: "/v2"
+tags:
+- name: "user"
+  description: "User Service"
+schemes:
+- "https"
+- "http"
+paths:
+  /userdetails/userName:
+    get:
+      tags:
+      - "user"
+      summary: "Fetches details of a specific user"
+      description: ""
+      operationId: "Searching"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "Searching a specific user"
+          
+  /login:
+    post:
+      tags:
+      - "user"
+      summary: "User login"
+      description: "This can only be done by the logged in user."
+      operationId: "User login"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "user has to login"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "User successfully logged in."
+   
+  
+  /user/signup:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "New user is created."
+          
+  /user/userId:
+    put:
+      summary: Updates the user
+      description: user details updation
+      responses:
+        200:
+          description: OK
+      operationId: "Updates user"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+  
+definitions:
+  User:
+    type: "object"
+    properties:
+      userId:
+        type: "integer"
+      userName:
+        type: "string"
+      userEmailid:
+        type: "string"
+      userPassword:
+        type: "string"
+      userPhoneNumber:
+        type: "string"
+    xml:
+      name: "User"
+      
+  
+ 

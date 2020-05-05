@@ -1,0 +1,103 @@
+swagger: "2.0"
+info:
+  description: "This is a sample Online Movie Ticket Booking server."
+  version: "1.0.0"
+  title: "Swagger Online Movie Ticket Booking"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "movieticketbooking.swagger.io"
+basePath: "/v2"
+tags:
+- name: "Movie"
+  description: "Movie sevice"
+schemes:
+- "https"
+- "http"
+paths:
+  /moviedetails/movieName:
+    get:
+      tags:
+      - "Movie"
+      summary: "Fetches details of a specific Movie"
+      description: ""
+      operationId: "Searching"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "Searching a specific Movie"
+          
+  /addmovie:
+    post:
+      tags:
+      - "Movie"
+      summary: "Adding movie"
+      description: "This can only be done by the admin."
+      operationId: "Add Movie"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Admin can only do this"
+        required: true
+        schema:
+          $ref: "#/definitions/Movie"
+      responses:
+        default:
+          description: "Movie added succesffully."
+  /movie/movieName :
+    delete:
+      summary: Delete a movie
+      description: Movie deletion
+      responses:
+        200:
+          description: OK
+    
+          
+  /movie/movieId:
+    put:
+      summary: Updates the Movie
+      description: Movie details updation
+      responses:
+        200:
+          description: OK
+      operationId: "Updates Movie"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update movie object"
+        required: true
+        schema:
+          $ref: "#/definitions/Movie"
+  
+definitions:
+  Movie:
+    type: "object"
+    properties:
+      movieId:
+        type: "integer"
+      movieName:
+        type: "string"
+      genre:
+        type: "string"
+      releasedate:
+        type: "string"
+      rating:
+        type: "integer"
+    xml:
+      name: "Movie"
+      
+  
+ 
+
